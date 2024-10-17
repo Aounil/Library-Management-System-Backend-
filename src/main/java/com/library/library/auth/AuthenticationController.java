@@ -1,6 +1,6 @@
 package com.library.library.auth;
 
-
+import com.library.library.service.emailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     private final AuthenticationService service;
+    private final emailService emailService;
 
 
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegistreRequest request) {
+        emailService.sendEmail(request.getEmail(),"NEW MEMBER !!","Welcome to our family "+request.getName());
         return ResponseEntity.ok(service.register(request));
     }
 

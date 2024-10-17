@@ -19,6 +19,21 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host : smtp.gmail.com
+    port: 587
+    username: aounillibrary@gmail.com
+    password: obhx uwyw cmie fvby
+    properties:
+      mail:
+        smtp:
+          auth : true
+          starttls:
+            enable : true
+
+
+
+
 
 
 
