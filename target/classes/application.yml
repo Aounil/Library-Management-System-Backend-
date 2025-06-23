@@ -1,0 +1,40 @@
+
+
+
+#data source config
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library
+    username: postgres
+    password: yassin1209
+    driver-class-name: org.postgresql.Driver
+    #tells the database to creat the schema and destroy previous one when starting the app
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true #this will show the sql being created in the output of the app
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host : smtp.gmail.com
+    port: 587
+    username: aounillibrary@gmail.com
+    password: obhx uwyw cmie fvby
+    properties:
+      mail:
+        smtp:
+          auth : true
+          starttls:
+            enable : true
+
+
+
+
+
+
+
+
