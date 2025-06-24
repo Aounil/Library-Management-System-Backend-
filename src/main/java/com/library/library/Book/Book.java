@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class book {
+public class Book {
 
 
     @Id
@@ -21,10 +21,10 @@ public class book {
 
     private String author;
 
-    public book() {
+    public Book() {
     }
 
-    public book(Integer id, String title, String author) {
+    public Book(Integer id, String title, String author) {
         this.id = id;
         this.title = title;
         this.author = author;

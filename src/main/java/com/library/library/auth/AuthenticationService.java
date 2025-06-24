@@ -15,6 +15,10 @@ import org.springframework.web.client.RestTemplate;
 
 
 @Service
+
+
+//Lombok’s @RequiredArgsConstructor automatically
+// creates a constructor for all final fields (and fields annotated with @NonNull) in your class.
 @RequiredArgsConstructor
 public class AuthenticationService {
 
@@ -49,24 +53,37 @@ public class AuthenticationService {
     private static final String BRUNO_ERROR_REPORTING_URL = "http://localhost:8080/reportError";
 
     public AuthenticationResponse Authenticate(AuthenticationRequest request) {
-            // Attempt authentication
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            request.getEmail(),
-                            request.getPassword()
-                    )
-            );
 
+        // ✅ Attempt to authenticate the user using their email and password.
+        // This line checks if the credentials are valid by:
+        // - Loading the user from the DB using email (via UserDetailsService).
+        // - Comparing the hashed password with the one in the DB.
+        // - If credentials are wrong, it throws an exception (e.g., BadCredentialsException).
+        // - If correct, the user is considered authenticated by Spring Security.
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),      // user's email (used as username)
+                        request.getPassword()    // user's password (plain text, compared securely)
+                )
+        );
 
-        // Fetch user from the repository
+        // ✅ Retrieve the user from the database using the provided email.
+        // If the user doesn't exist, throw an exception.
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Generate JWT token for the authenticated user
+        // ✅ Generate a JWT token for the authenticated user.
+        // The token will include claims like the user's email and roles,
+        // and will be signed using a secret key.
         var jwtToken = jwtService.generateToken(user);
 
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        // ✅ Return the token to the client inside a response object.
+        // The client will store and use this token in the Authorization header for future requests.
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
     }
+
 
 
 }

@@ -1,7 +1,7 @@
 package com.library.library.Controller;
 
 
-import com.library.library.Book.book;
+import com.library.library.Book.Book;
 import com.library.library.Book.bookRepository;
 import com.library.library.User.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,8 +25,8 @@ public class adminController {
 
 
     @PostMapping("/add")
-    public List<book> addBook(@RequestBody List<book> books) {
-        return bookRepository.saveAll(books);
+    public List<Book> addBook(@RequestBody List<Book> Books) {
+        return bookRepository.saveAll(Books);
     }
 
     @DeleteMapping("/delete/{book-id}")  //I don't know if it's better to let it like this or delete by title

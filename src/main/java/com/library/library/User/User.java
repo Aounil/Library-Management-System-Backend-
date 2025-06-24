@@ -1,11 +1,9 @@
 package com.library.library.User;
 
 
+import com.library.library.Book.Book;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +25,8 @@ import java.util.List;
 @AllArgsConstructor//Purpose: Generates a constructor that takes parameters for all fields in the class.
 @Entity//Specifies that the class is a JPA entity, meaning it represents a table in the database.
 @Table(name = "_user_") //creat a database table for the class
+@Getter
+@Setter
 public class User implements UserDetails {//makes u r user a spring user
 
     @Id//use the id as the key id for the class
@@ -42,6 +42,16 @@ public class User implements UserDetails {//makes u r user a spring user
 
     @Enumerated//use is when you are working with enum class
     private Role role;
+
+//  when working wiht one to many u should creat a join table for best practise
+//    @joincolumn is used when u want to refrencce a pk in a diff table to use it as fk
+//    joinColumns = ...... is setting up the pk of the join table
+//    inverseJoinColumns...... same but for the fk in the join table
+    @OneToMany()
+    @JoinTable(name = "user_favorites" ,
+            joinColumns = @JoinColumn(name = "user_id") ,
+            inverseJoinColumns = @JoinColumn(name = "Book_id" ))
+    private List<Book> favorites;
 
 
     @Override

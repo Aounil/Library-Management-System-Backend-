@@ -7,7 +7,7 @@ Admin:
 Manage users (add, delete).
 Full control over the book inventory (add, delete, modify).
 Users:
-Browse and read books available on the platform.
+Browse and read Books available on the platform.
 2. JWT Authentication:
 Secure authentication and authorization using JSON Web Token to protect API endpoints.
 3. Database Integration:

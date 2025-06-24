@@ -15,6 +15,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {  // 'user
     //Optional helps with null exceptions
     Optional<User> findByEmail(String email);
 
+    Optional<User> findById(int id);
     //public void deleteById(Integer id);
 
 

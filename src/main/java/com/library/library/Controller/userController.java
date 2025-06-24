@@ -1,13 +1,17 @@
 package com.library.library.Controller;
 
 
-import com.library.library.Book.book;
+import com.library.library.Book.Book;
 import com.library.library.Book.bookRepository;
+import com.library.library.User.User;
+import com.library.library.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 //@CrossOrigin
 @RestController
@@ -15,24 +19,60 @@ import java.util.List;
 public class userController {
 
 
-
     private final com.library.library.Book.bookRepository bookRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public userController(bookRepository bookRepository) {
+    public userController(bookRepository bookRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam String book_title) {
-        book book =  bookRepository.findByTitle(book_title);
-        return "you'r now reading the book " + book.getTitle() +" by "+ book.getAuthor() +" enjoy";
+    public ResponseEntity<String> search(@RequestParam(name = "name") String bookTitle) {
+        Book book = bookRepository.findByTitle(bookTitle);
+
+        if (book == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Book with title \"" + bookTitle + "\" was not found.");
+        }
+
+        return ResponseEntity.ok(" You're now reading the book \"" + book.getTitle() +
+                "\" by " + book.getAuthor() + ". Enjoy!");
     }
 
 
+    @PostMapping("/set/favorites")
+    public ResponseEntity<String> addFavorite(@RequestParam(name = "title") String title ,@RequestParam(name = "user_id") int user_id) {
+        Book book = bookRepository.findByTitle(title);
+
+        if (book == null) {
+            return new ResponseEntity<>("Book with title \"" + title + "\" was not found.", HttpStatus.NOT_FOUND);
+        }
+
+        Optional<User> userOptional = userRepository.findById(user_id);
+
+        if (userOptional.isEmpty()) {
+            return new ResponseEntity<>("User with id " + user_id + " was not found", HttpStatus.NOT_FOUND);
+        }
+
+        User user = userOptional.get(); //to get the user
+        user.getFavorites().add(book);
+        userRepository.save(user);
+
+        return ResponseEntity.ok("Book with title \"" + title + "\" was favorited.");
+    }
+
+    @GetMapping("/favorites")
+    public List<Book> getFavorites(@RequestParam(name = "user_id") int user_id) {
+        User user = userRepository.findById(user_id).get();
+        List<Book> favorites = user.getFavorites();
+        return user.getFavorites();
+    }
+
 
     @GetMapping("/all")
-    public List<book> GetBooks() {
+    public List<Book> GetBooks() {
         return bookRepository.findAll();
     }
 
