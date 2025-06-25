@@ -1,17 +1,78 @@
-Library Management System (Backend) – Personal Project
-I developed a fully functional backend for a Library Management System using Spring Boot, which integrates JWT (JSON Web Token) for secure authentication and JPA to interact with a relational database.
+# 📚 Library Management System – Backend
 
-Key Features:
-1. Role-Based Access:
-Admin:
-Manage users (add, delete).
-Full control over the book inventory (add, delete, modify).
-Users:
-Browse and read Books available on the platform.
-2. JWT Authentication:
-Secure authentication and authorization using JSON Web Token to protect API endpoints.
-3. Database Integration:
-Created repositories for user and book data using Spring Data JPA, ensuring smooth interaction with the relational database.
-4. Email Service:
-A welcoming email is sent to new users upon successful sign-up using an integrated email service.
+Welcome to the backend of the **Library Management System**! This robust Spring Boot project empowers libraries or organizations to efficiently manage their digital book inventory and users, with a focus on security, scalability, and a smooth user experience.
 
+---
+
+## 🚀 Features
+
+### 🛡️ Secure & Modern Authentication
+- **JWT (JSON Web Token) Authentication**: All endpoints are protected via industry-standard JWT tokens, ensuring only authorized access.
+- **Role-Based Access Control**:
+    - **Admins** can manage users and have full control over book inventory.
+    - **Regular Users** can browse and read available books.
+
+### 📚 Book & User Management
+- **Admin Dashboard**: Add, delete, or update books and users with ease.
+- **User Experience**: Seamless signup, login, and exploration of the library catalog.
+
+### 📨 Email Notifications
+- **Welcome Emails**: New users receive a personalized welcome email upon registration.
+
+### 🗄️ Database Integration & Persistence
+- **Spring Data JPA**: Effortless interaction with a relational database for reliable data storage.
+- **Repository Pattern**: Clean, maintainable code for managing Users and Books.
+
+### ⚡️ Fast, Scalable, and Maintainable
+- Built with Java & Spring Boot for high performance.
+- Designed for easy extension and future feature additions.
+
+---
+
+## 🖥️ Frontend
+
+A modern **React** frontend for this system is now available and under active development!
+
+- Check it out here: [Library Management System Frontend](https://github.com/Aounil/Library-Management-System-Frontend)
+- Note: The frontend is a work in progress—stay tuned for new features and improvements!
+
+---
+
+## 🏁 Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Aounil/Library-Management-System-Backend-.git
+   ```
+2. **Configure your database** in `application.properties`.
+3. **Build & run**
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+---
+
+## 🛠️ Tech Stack
+
+- **Java** (100%)
+- **Spring Boot**
+- **Spring Security (JWT)**
+- **Spring Data JPA**
+- **Relational Database** (e.g., MySQL/PostgreSQL)
+- **JavaMailSender** for email service
+
+---
+
+## 🤝 Contributions
+
+Want to add features or improve the project? Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 📫 Contact
+
+For questions or collaboration, reach out via [GitHub Issues](https://github.com/Aounil/Library-Management-System-Backend-/issues).
+
+---
+
+> Made with ❤️ by [Aounil](https://github.com/Aounil)
