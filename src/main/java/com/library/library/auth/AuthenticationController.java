@@ -1,6 +1,6 @@
 package com.library.library.auth;
 
-import com.library.library.service.emailService;
+import com.library.library.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
     private final AuthenticationService service;
-    private final emailService emailService;
+    private final EmailService emailService;
 
 
     @PostMapping("/register")

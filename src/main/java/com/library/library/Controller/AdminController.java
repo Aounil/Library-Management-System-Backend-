@@ -2,26 +2,25 @@ package com.library.library.Controller;
 
 
 import com.library.library.Book.Book;
-import com.library.library.Book.bookRepository;
+import com.library.library.Book.BookRepository;
 import com.library.library.User.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 
 @PreAuthorize("hasAnyAuthority('ADMIN')")
 @RestController
 @RequestMapping("/admin/books")
-public class adminController {
+public class AdminController {
 
 
-    private final bookRepository bookRepository;
+    private final BookRepository bookRepository;
     private final UserRepository userRepository;
 
-    public adminController(com.library.library.Book.bookRepository bookRepository, UserRepository userRepository) {
+    public AdminController(BookRepository bookRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
         this.userRepository = userRepository;
     }

@@ -1,7 +1,6 @@
 package com.library.library.config;
 
 import com.library.library.User.UserRepository;
-import com.library.library.service.emailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

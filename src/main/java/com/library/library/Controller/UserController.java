@@ -2,7 +2,7 @@ package com.library.library.Controller;
 
 
 import com.library.library.Book.Book;
-import com.library.library.Book.bookRepository;
+import com.library.library.Book.BookRepository;
 import com.library.library.User.User;
 import com.library.library.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +16,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/books")
-public class userController {
+public class UserController {
 
 
-    private final com.library.library.Book.bookRepository bookRepository;
+    private final BookRepository bookRepository;
     private final UserRepository userRepository;
 
     @Autowired
-    public userController(bookRepository bookRepository, UserRepository userRepository) {
+    public UserController(BookRepository bookRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
         this.userRepository = userRepository;
     }
