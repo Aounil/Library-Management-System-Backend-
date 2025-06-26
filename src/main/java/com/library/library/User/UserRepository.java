@@ -14,7 +14,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {  // 'user
     // It returns an Optional<user> which means the user may or may not exist in the database.
     //Optional helps with null exceptions
     Optional<User> findByEmail(String email);
-
+    Optional<User> findByName(String username);
     Optional<User> findById(int id);
     //public void deleteById(Integer id);
 

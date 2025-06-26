@@ -64,6 +64,7 @@ public class User implements UserDetails {//makes u r user a spring user
         return password;
     }
 
+
     @Override
     public String getUsername() {
         return email;
